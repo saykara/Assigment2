@@ -4,7 +4,7 @@
 void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue[20])
 {
 	int i, j, searchValue=1, searchArray[10], remainingValue[10], searchValue2=0;
-	char returnedValue[20];
+	char returnedValue[20]={"0"};
 	
 	int numberOfDigit = strlen(inputValue);
 	int numberOfDigit2=numberOfDigit;
