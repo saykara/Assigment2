@@ -10,7 +10,7 @@ void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue
 	int numberOfDigit2=numberOfDigit;
 	
 	
-	for(i=0; i<=numberOfDigit; i++)
+	for(i=0; i<numberOfDigit; i++)
 	{
 		if((inputValue[i]>='A') && (inputValue[i]<='Z'))
 		{
