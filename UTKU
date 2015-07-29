@@ -3,7 +3,7 @@
 
 void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue[20])
 {
-	int i, j, searchValue=1, searchArray[10], remainingValue[10], searchValue2=0;
+	int i, j, invalidInput=0, searchValue=1, searchArray[20], remainingValue[20], searchValue2=0;
 	char returnedValue[20]={"0"};
 	
 	int numberOfDigit = strlen(inputValue);
@@ -74,15 +74,32 @@ void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue
 				    
 				case 'O' :
 					searchArray[i]=24;
-				    break;	
+				    break;
+				
+				default	 :
+				 	invalidInput=1;
+				 	break;
 			}
 		}
-		else
+		
+		else if((inputValue[i]>='0') && (inputValue[i]<='9'))
 		{
 			searchArray[i]=inputValue[i]-'0';
-		} 
+		}
+		
+		else
+		{
+			invalidInput=1;
+		}
 	}
 	
+	for(i=0; i<numberOfDigit; i++)
+	{
+		if (searchArray[i]>=baseConvertFrom)
+		{
+			invalidInput=1;
+		}
+	}
 	for(i=0; i<numberOfDigit; i++)
 	{
 		for(j=1; j<numberOfDigit2; j++)
@@ -93,14 +110,13 @@ void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue
 	    searchValue=1;
 	    numberOfDigit2--;
 	}
+	
 	for(i=0; i<numberOfDigit; i++)
 	{
 		searchValue2+=searchArray[i];		
 	}
 	
-
-	
-	i=0;
+    i=0;
 	
 	while(baseConvertTo<searchValue2)
 	{
@@ -177,7 +193,10 @@ void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue
 				    
 				case 24 :
 					returnedValue[j]='O';
-				    break;	
+				    break;
+				
+				default :
+					break;		
 		    }
 		}
 	
@@ -189,8 +208,14 @@ void baseConvertFunction(int baseConvertFrom, int baseConvertTo, char inputValue
 		j++;
 		
 	}
-	
-	printf("%s base %d is equal to %s base %d\n",inputValue,baseConvertFrom,returnedValue,baseConvertTo);
+	if(invalidInput!=0)
+	{
+		printf("You have entered an invalid value.\a\n");
+	}
+	else
+	{
+		printf("%s base %d is equal to %s base %d\n",inputValue,baseConvertFrom,returnedValue,baseConvertTo);
+	}
     
 	return; 
 }
@@ -213,7 +238,7 @@ int main()
 			{
 				break;
 			}
-    	    printf("Please enter between 2-25, if you want to terminate the program enter '0'(zero)\n");
+    	    printf("Please enter between 2-25, if you want to terminate the program enter '0'(zero)\a\n");
 		}
 		
 		if( baseConvertFrom==0 )
@@ -233,7 +258,7 @@ int main()
 			{
 				break;
 			}
-			printf("Please enter between 2-25, if you want to terminate the program enter '0'(zero)\n");
+			printf("Please enter between 2-25, if you want to terminate the program enter '0'(zero)\a\n");
 		}
 		if( baseConvertTo==0 )
 		{
